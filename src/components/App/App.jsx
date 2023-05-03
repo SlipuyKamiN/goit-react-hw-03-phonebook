@@ -16,12 +16,16 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
+    try {
+      const savedContacts = JSON.parse(localStorage.getItem('contacts'));
 
-    if (savedContacts.length) {
-      this.setState({
-        contacts: savedContacts,
-      });
+      if (savedContacts && savedContacts.length > 0) {
+        this.setState({
+          contacts: savedContacts,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
